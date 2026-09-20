@@ -93,3 +93,19 @@ Core/Optional must be visible and the limit must be enforced in domain/applicati
 
 ### Documents affected
 SOURCE_OF_TRUTH, PRD, DATA_MODEL.
+
+## DEC-005 — Auth Proxy Pattern
+Date: 2026-09-20
+Status: accepted
+
+### Context
+Next.js 16 deprecated standard `middleware.ts` relying on edge runtimes. Supabase auth requires token verification on protected routes.
+
+### Decision
+Use `proxy.ts` pattern with `@supabase/ssr` at the project root for centralized, un-bypassable auth protection for all private routes. Use Server Actions for auth workflows.
+
+### Consequences
+Eliminates Edge runtime constraints for auth verification. Provides reliable route protection before Server Components execute.
+
+### Documents affected
+ARCHITECTURE, IMPLEMENTATION_PLAN.
